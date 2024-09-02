@@ -3,14 +3,14 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Comments</h1>
-    <%= link_to "New comment", new_post_comment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New comment", new_post_comment_path(@post), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="comments" class="min-w-full">
     <% @comments.each do |comment| %>
       <%= render comment %>
       <p>
-        <%= link_to "Show this comment", comment, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Show this comment", post_comment_path(@post, comment), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       </p>
     <% end %>
   </div>

@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { Post.new }
+  let(:post) { build(:post) }
 
-  describe "#user" do
-    it "persists" do
-      expect(create(post))
-    end
+  it "is not valid without a user" do
+    new_post = Post.new(user: nil)
+    expect(new_post).not_to be_valid
+    expect(new_post.errors[:user]).to include("must exist")
+  end
 
-    it "is required" do
-      user = create(:user)
-
-      expect(boat).to be_valid_with(user).as(:user)
-      expect(boat).not_to be_valid_with(nil).as(:user)
-    end
+  it "is valid with user" do
+    expect(post).to be_valid
   end
 end
