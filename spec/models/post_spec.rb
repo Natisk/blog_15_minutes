@@ -1,15 +1,33 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:post) { build(:post) }
+  let(:user) { create(:user) }
 
-  it "is not valid without a user" do
-    new_post = Post.new(user: nil)
-    expect(new_post).not_to be_valid
-    expect(new_post.errors[:user]).to include("must exist")
+  subject { described_class.new(title: "What are we gonna do?",
+                                body: "Let's talk about what are we going to do today.",
+                                user_id: user.id) }
+
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
   end
 
-  it "is valid with user" do
-    expect(post).to be_valid
+  it "is not valid without a title" do
+    subject.title = ""
+    expect(subject).to_not be_valid
+    expect(subject.errors[:title]).to include("can't be blank")
+  end
+
+  it "is not valid without a body" do
+    subject.body = ""
+    expect(subject).to_not be_valid
+    expect(subject.errors[:body]).to include("can't be blank")
+  end
+
+  it "is not valid without a user" do
+    subject.user_id = nil
+    expect(subject).to_not be_valid
+    expect(subject.errors[:user]).to include("must exist")
   end
 end
