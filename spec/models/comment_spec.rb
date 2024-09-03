@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   let(:user) { create(:user) }
-  let(:post) { create(:post, user: user) }
+  let(:post) { create(:post) }
 
   subject { described_class.new(body: "Text written by a user",
                                 post_id: post.id,
