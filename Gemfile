@@ -51,6 +51,7 @@ group :development, :test do
   gem "letter_opener", "~> 1.10"
   gem "rspec-rails", "~> 6.1.0"
   gem "factory_bot_rails", "~> 6.4"
+  gem "rails-controller-testing", "~> 1.0"
 end
 
 group :development do
