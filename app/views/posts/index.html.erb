@@ -6,12 +6,18 @@
     <%= link_to "New post", new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="posts" class="min-w-full">
+  <div id="posts" class="min-w-full" data-controller="search">
+    <%= tag.input type: 'text', id: "search", name: "query", placeholder: "search for posts",
+                  class: "border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500",
+                  data: { action: "input->search#posts" } %>             
+    
     <% @posts.each do |post| %>
-      <%= render post %>
-      <p>
-        <%= link_to "Show this post", post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
+      <%= tag.div class: "post_wrapper" do %>
+        <%= render post %>
+        <p>
+          <%= link_to "Show this post", post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        </p>
+      <% end %>
     <% end %>
   </div>
 </div>
