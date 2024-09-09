@@ -1,11 +1,11 @@
 <div id="<%= dom_id post %>" class="post_container">
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
-    <span data-search-target="title"><%= post.title %></span>
+    <%= tag.span(data: { search_target: "title" }) { post.title } %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Body:</strong>
-    <span data-search-target="body"><%= post.body %></span>
+    <%= tag.span(data: { search_target: "body" }) { post.body } %>
   </p>
 </div>
