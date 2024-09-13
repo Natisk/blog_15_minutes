@@ -1,15 +1,14 @@
-<div class="w-full">
+<%= tag.div class: "w-full" do %>
   <% content_for :title, "Posts" %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Posts</h1>
+  <%= tag.div class: "flex justify-between items-center" do %>
+    <%= tag.h1(class: "font-bold text-4xl") { "Posts" } %>
     <%= link_to "New post", new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
+  <% end %>
 
-  <div id="posts" 
-       class="min-w-full" 
-       data-controller="search clipboard toast"
-       data-action="clipboard:copy->toast#show">
+  <%= tag.div id: "posts", class: "min-w-full", 
+              data: { controller: "search clipboard toast",
+                      action: "clipboard:copy->toast#show" } do %>
     <%= tag.input type: 'text', id: "search", name: "query", placeholder: "search for posts",
                   class: "border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500",
                   data: { action: "input->search#posts" } %>             
@@ -17,10 +16,10 @@
     <% @posts.each do |post| %>
       <%= tag.div class: "post_wrapper" do %>
         <%= render post %>
-        <p>
+        <%= tag.p do %>
           <%= link_to "Show this post", post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-        </p>
+        <% end %>
       <% end %>
     <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>
