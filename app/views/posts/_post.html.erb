@@ -6,9 +6,9 @@
         <%= tag.strong(class: "font-medium mb-1") { "Title:" } %>
         <%= tag.button(data: { action: "clipboard#copy", 
                               post_title: post.title },
-                      class: "flex items-center px-3 py-2 text-xs font-medium text-gray-600 bg-gray-100 border-l 
-                              border-gray-200 dark:border-gray-600 dark:text-gray-400 dark:bg-gray-800 hover:text-blue-700 
-                              dark:hover:text-white copy-to-clipboard-button") do %>
+                      class: "flex items-center px-3 py-2 text-xs font-medium text-gray-800 bg-gray-100 border rounded
+                              border-gray-200 dark:border-gray-600 dark:text-gray-800 dark:bg-gray-300 hover:text-blue-700 
+                              dark:hover:text-gray-400 copy-to-clipboard-button") do %>
           <%= tag.svg class: "w-3.5 h-3.5 mr-2", 
                       "aria-hidden": "true", 
                       xmlns: "http://www.w3.org/2000/svg", 
