@@ -51,7 +51,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "annotate", "~> 3.2"
   gem "letter_opener", "~> 1.10"
-  gem "rspec-rails", "~> 6.1.0"
+  gem "rspec-rails", "~> 7.0.1"
   gem "factory_bot_rails", "~> 6.4"
   gem "rails-controller-testing", "~> 1.0"
   gem "faker", "~> 3.4"
