@@ -1,6 +1,6 @@
 <%= tag.div data: { controller: "clipboard toast",
                     action: "clipboard:copy->toast#show" } do %>                           
-  <%= tag.div id: "#{dom_id post}", class: "post_container" do %>
+  <%= turbo_frame_tag post do %>
     <%= tag.p class: "my-5" do %>
       <%= tag.div class: "flex items-center space-x-2" do %>
         <%= tag.strong(class: "font-medium mb-1") { "Title:" } %>
@@ -23,12 +23,29 @@
           <%= tag.span(class: "copy-text") { "copy" } %>
         <% end %>
       <% end %>
-      <%= tag.span(data: { search_target: "title" }) { post.title } %>
+
+      <% if local_assigns.dig(:locals, :index_view) %>
+        <%= link_to post.title, 
+                    post, 
+                    class: "text-blue-600 hover:text-blue-800", 
+                    data: { search_target: "title" } %>
+      <% else %>
+        <%= tag.span(data: { search_target: "title" }) { post.title } %>
+      <% end %>
     <% end %>
 
     <%= tag.p class: "my-5" do %>
       <%= tag.strong(class: "block font-medium mb-1") { "Body:" } %>
       <%= tag.span(data: { search_target: "body" }) { post.body } %>
     <% end %>
+
+    <%= link_to "Edit this post", 
+                edit_post_path(post), 
+                class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+                <div class="inline-block ml-2">
+    <%= button_to "Destroy this post", 
+                  post, 
+                  method: :delete, 
+                  class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
   <% end %>
 <% end %>
